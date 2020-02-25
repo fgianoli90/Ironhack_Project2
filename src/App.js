@@ -17,7 +17,8 @@ class App extends Component {
     answerSelected: "",
     correctAnswer: "",
     countQ: 0,
-    questions:[]
+    questions:[],
+    score: 0
   }
 
   passLink=()=> {
@@ -108,7 +109,7 @@ class App extends Component {
   countQuestion=(count)=>{
     console.log('count',count)
     let oneUp=this.state.countQ+count
-    console.log(oneUp,this.state.count)
+    console.log(oneUp,this.state.countQ)
     this.setState({
       countQ: oneUp
     })
@@ -117,6 +118,15 @@ class App extends Component {
   getQuestions=(questionsPassed)=>{
     this.setState({
       questions: questionsPassed
+    })
+  }
+  locationReload=()=>{
+    Location.reload()
+  }
+  scoreTotal=(points)=>{
+    console.log("sunm of score", points)
+    this.setState({
+      score: points
     })
   }
   render(){
@@ -155,6 +165,8 @@ class App extends Component {
           theAnswerSelected={this.answerSelected} 
           theCorrectSelected={this.correctAnswer} 
           counter={this.state.countQ}
+          scoreCount={this.state.score}
+          theScoreTotal={this.scoreTotal}
           />}>
         </Route>
         <Route exact path="/components/YesNo" render={(props)=>

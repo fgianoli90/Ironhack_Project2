@@ -12,9 +12,9 @@ class Difficulty extends Component {
     render() {
         console.log("Difficulty")
         return (
-            <div className="difficulty-level">
+            <div className="categories">
             <header><h1>Select a Difficulty Level</h1></header>
-            <div className="difficulty-buttons">                    
+            <div className="categories-buttons">                    
                     <Link to="/"><input type="button" onClick={this.handleClick} value="Easy" /></Link>
                     <Link to="/"><input type="button" onClick={this.handleClick} value="Medium" /></Link>
                     <Link to="/"><input type="button" onClick={this.handleClick} value="Hard" /></Link>

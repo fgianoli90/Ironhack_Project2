@@ -24,18 +24,18 @@ class Home extends Component {
     render() {
         console.log("Home")
         return (
-            <div className="Home">
-                <img src={triviaSign} className="trivia-Sign" alt="trivia"/>
+            <div className="Home" style={{backgroundImage: `url(${triviaSign})`, backgroundSize: 'cover', height: '750px', width: '100%'}}>
+                {/* <img src={triviaSign} className="trivia-Sign" alt="trivia"/> */}
                 <div className="ButtonsHome">
-                    <button>
-                        <Link to="/components/Categories">{this.props.theCategory === "a" ? ("Category"): this.props.theCategory}</Link>
-                    </button>
+                    <Link to="/components/Categories">
+                        <button>{this.props.theCategory === "a" ? ("Category"): this.props.theCategory}</button>
+                    </Link>
                     
-                    <button>
-                        <Link to="/components/Difficulty">{this.props.theDifficulty === "a" ? ("Difficulty Level"): this.props.theDifficulty}</Link>
-                    </button>
+                    <Link to="/components/Difficulty">
+                        <button>{this.props.theDifficulty === "a" ? ("Difficulty Level"): this.props.theDifficulty}</button>
+                    </Link>
                 </div><br/>
-                <div>
+                <div className="start-button" style={{color:'white'}}>
                     {!(this.props.theCategory==="a") && !(this.props.theDifficulty==="a") ? <Link to="/components/Game"><button onClick={this.handleStart}>Start</button></Link>: ("Please select a Category and Difficulty Level")}
                 </div>
             </div>

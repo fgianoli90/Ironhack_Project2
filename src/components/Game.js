@@ -1,123 +1,125 @@
 import React, { Component } from 'react';
 import { Link} from 'react-router-dom';
+import questionMark from '../questionMark.jpg'
+
 
 // import Axios from 'axios';
 
 class Game extends Component {
-    // state={
-    //     questions:[],
-    //     ready: false,
-    //     i: 1
-    // }
     
-    // componentDidMount(){
-    //     console.log("whatever")
-    //     Axios.get(`https://opentdb.com/api.php?amount=10${this.props.passTheLink}`).then(res=>{
-    //         this.setState ({
-    //         questions: res.data.results,
-    //         ready: true
-
-    //     })
-    //   })
-    // }
-
     handleClick=(e)=>{
         let answerIs=""
+        let points=this.props.scoreCount
         let rightAnswer=this.props.questionProp.correct_answer
         if (e.target.value === "a" || e.target.value===rightAnswer){
             answerIs="yes"
+            points = points+1
         } else {
             answerIs="no"
         }
         this.props.theAnswerSelected(answerIs)
         this.props.theCorrectSelected(rightAnswer)
-        // this.props.counter(this.state.i)
-        // this.setState({
-           
-        //     i: this.state.i + 1
-        //     })
+        this.props.theScoreTotal(points)
     }
 
     showQuestion=()=>{
         if (this.props.counter<=9){
             var el =document.createElement('span');
             el.innerHTML=this.props.questionProp.question
-        return <div><p>{el.innerText}</p><br/><ul><Link to='/components/YesNo'>{this.randomizeAnswers()}</Link></ul></div>
+        return <div className="card" border="primary" style={{ width: '400px' }}>
+        <div className="card-header">Question {this.props.counter+1} of 10</div>
+        <div className="card-body">
+        <h3 className="card-title">{el.innerText}</h3>
+        <div className="card-text"><ul className="list-group-items">{this.randomizeAnswers()}</ul></div>
+        </div>
+        </div>
         } else {
-        return "GameOver"
+        return <div className="GameOver">
+        <h1>GameOver</h1><br/>
+        <p>Your final score: {this.props.scoreCount} / 10</p><br/>
+        <button onClick={this.goBackToFirstPage}>Play Again</button>
+        </div>
         }
     }
 
+    goBackToFirstPage = () => {
+        window.location.href = window.origin
+    }
+    
     randomizeAnswers=()=>{
-        let a= this.props.questionProp.correct_answer;
-        let b= this.props.questionProp.incorrect_answers[0];
-        let c= this.props.questionProp.incorrect_answers[1];
-        let d= this.props.questionProp.incorrect_answers[2];
+        var a =document.createElement('span');
+        var b =document.createElement('span');
+        var c =document.createElement('span');
+        var d =document.createElement('span');
+        a.innerHTML= this.props.questionProp.correct_answer;
+        b.innerHTML= this.props.questionProp.incorrect_answers[0];
+        c.innerHTML= this.props.questionProp.incorrect_answers[1];
+        d.innerHTML= this.props.questionProp.incorrect_answers[2];
         let answers=""
         let randomNumber=Math.floor(Math.random()*8)
         if (this.props.questionProp.type==="boolean"){ randomNumber=8}
         switch (randomNumber){
             case 0:
                 answers= <form>
-                <input onClick={this.handleClick} type="radio" name="answerSelected" value="a"/><label>A. {a}</label><br/>
-                <input onClick={this.handleClick} type="radio" name="answerSelected" value="b"/><label>B. {b}</label><br/>
-                <input onClick={this.handleClick} type="radio" name="answerSelected" value="c"/><label>C. {c}</label><br/>
-                <input onClick={this.handleClick} type="radio" name="answerSelected" value="d"/><label>D. {d}</label><br/></form>;
+               <div className="multiple-choice"> <Link to='/components/YesNo'><input onClick={this.handleClick} type="radio" name="answerSelected" value="a"/></Link><label>A. {a.innerText}</label><br/></div>
+               <div className="multiple-choice"> <Link to='/components/YesNo'><input onClick={this.handleClick} type="radio" name="answerSelected" value="b"/></Link><label>B. {b.innerText}</label><br/></div>
+               <div className="multiple-choice"> <Link to='/components/YesNo'><input onClick={this.handleClick} type="radio" name="answerSelected" value="c"/></Link><label>C. {c.innerText}</label><br/></div>
+               <div className="multiple-choice"> <Link to='/components/YesNo'><input onClick={this.handleClick} type="radio" name="answerSelected" value="d"/></Link><label>D. {d.innerText}</label><br/></div></form>;
                 break;
             case 1:
                 answers= <form>
-                <input onClick={this.handleClick} type="radio" name="answerSelected" value="b"/><label>A. {b}</label><br/>
-                <input onClick={this.handleClick} type="radio" name="answerSelected" value="a"/><label>B. {a}</label><br/>
-                <input onClick={this.handleClick} type="radio" name="answerSelected" value="c"/><label>C. {c}</label><br/>
-                <input onClick={this.handleClick} type="radio" name="answerSelected" value="d"/><label>D. {d}</label><br/></form>;
+               <div className="multiple-choice"> <Link to='/components/YesNo'><input onClick={this.handleClick} type="radio" name="answerSelected" value="b"/></Link><label>A. {b.innerText}</label><br/></div>
+               <div className="multiple-choice"> <Link to='/components/YesNo'><input onClick={this.handleClick} type="radio" name="answerSelected" value="a"/></Link><label>B. {a.innerText}</label><br/></div>
+               <div className="multiple-choice"> <Link to='/components/YesNo'><input onClick={this.handleClick} type="radio" name="answerSelected" value="c"/></Link><label>C. {c.innerText}</label><br/></div>
+               <div className="multiple-choice"> <Link to='/components/YesNo'><input onClick={this.handleClick} type="radio" name="answerSelected" value="d"/></Link><label>D. {d.innerText}</label><br/></div></form>;
                 break;
             case 2:
                 answers= <form>
-                <input onClick={this.handleClick} type="radio" name="answerSelected" value="c"/><label>A. {c}</label><br/>
-                <input onClick={this.handleClick} type="radio" name="answerSelected" value="b"/><label>B. {b}</label><br/>
-                <input onClick={this.handleClick} type="radio" name="answerSelected" value="a"/><label>C. {a}</label><br/>
-                <input onClick={this.handleClick} type="radio" name="answerSelected" value="d"/><label>D. {d}</label><br/></form>;
+               <div className="multiple-choice"> <Link to='/components/YesNo'><input onClick={this.handleClick} type="radio" name="answerSelected" value="c"/></Link><label>A. {c.innerText}</label><br/></div>
+               <div className="multiple-choice"> <Link to='/components/YesNo'><input onClick={this.handleClick} type="radio" name="answerSelected" value="b"/></Link><label>B. {b.innerText}</label><br/></div>
+               <div className="multiple-choice"> <Link to='/components/YesNo'><input onClick={this.handleClick} type="radio" name="answerSelected" value="a"/></Link><label>C. {a.innerText}</label><br/></div>
+               <div className="multiple-choice"> <Link to='/components/YesNo'><input onClick={this.handleClick} type="radio" name="answerSelected" value="d"/></Link><label>D. {d.innerText}</label><br/></div></form>;
                 break;
             case 3:
                 answers= <form>
-                <input onClick={this.handleClick} type="radio" name="answerSelected" value="d"/><label>A. {d}</label><br/>
-                <input onClick={this.handleClick} type="radio" name="answerSelected" value="b"/><label>B. {b}</label><br/>
-                <input onClick={this.handleClick} type="radio" name="answerSelected" value="c"/><label>C. {c}</label><br/>
-                <input onClick={this.handleClick} type="radio" name="answerSelected" value="a"/><label>D. {a}</label><br/></form>;
+               <div className="multiple-choice"> <Link to='/components/YesNo'><input onClick={this.handleClick} type="radio" name="answerSelected" value="d"/></Link><label>A. {d.innerText}</label><br/></div>
+               <div className="multiple-choice"> <Link to='/components/YesNo'><input onClick={this.handleClick} type="radio" name="answerSelected" value="b"/></Link><label>B. {b.innerText}</label><br/></div>
+               <div className="multiple-choice"> <Link to='/components/YesNo'><input onClick={this.handleClick} type="radio" name="answerSelected" value="c"/></Link><label>C. {c.innerText}</label><br/></div>
+               <div className="multiple-choice"> <Link to='/components/YesNo'><input onClick={this.handleClick} type="radio" name="answerSelected" value="a"/></Link><label>D. {a.innerText}</label><br/></div></form>;
                 break;
             case 4:
                 answers= <form>
-                <input onClick={this.handleClick} type="radio" name="answerSelected" value="b"/><label>A. {b}</label><br/>
-                <input onClick={this.handleClick} type="radio" name="answerSelected" value="d"/><label>B. {d}</label><br/>
-                <input onClick={this.handleClick} type="radio" name="answerSelected" value="c"/><label>C. {c}</label><br/>
-                <input onClick={this.handleClick} type="radio" name="answerSelected" value="a"/><label>D. {a}</label><br/></form>;
+               <div className="multiple-choice"> <Link to='/components/YesNo'><input onClick={this.handleClick} type="radio" name="answerSelected" value="b"/></Link><label>A. {b.innerText}</label><br/></div>
+               <div className="multiple-choice"> <Link to='/components/YesNo'><input onClick={this.handleClick} type="radio" name="answerSelected" value="d"/></Link><label>B. {d.innerText}</label><br/></div>
+               <div className="multiple-choice"> <Link to='/components/YesNo'><input onClick={this.handleClick} type="radio" name="answerSelected" value="c"/></Link><label>C. {c.innerText}</label><br/></div>
+               <div className="multiple-choice"> <Link to='/components/YesNo'><input onClick={this.handleClick} type="radio" name="answerSelected" value="a"/></Link><label>D. {a.innerText}</label><br/></div></form>;
                 break;
             case 5:
                 answers= <form>
-                <input onClick={this.handleClick} type="radio" name="answerSelected" value="d"/><label>A. {d}</label><br/>
-                <input onClick={this.handleClick} type="radio" name="answerSelected" value="b"/><label>B. {b}</label><br/>
-                <input onClick={this.handleClick} type="radio" name="answerSelected" value="a"/><label>C. {a}</label><br/>
-                <input onClick={this.handleClick} type="radio" name="answerSelected" value="c"/><label>D. {c}</label><br/></form>;
+               <div className="multiple-choice"> <Link to='/components/YesNo'><input onClick={this.handleClick} type="radio" name="answerSelected" value="d"/></Link><label>A. {d.innerText}</label><br/></div>
+               <div className="multiple-choice"> <Link to='/components/YesNo'><input onClick={this.handleClick} type="radio" name="answerSelected" value="b"/></Link><label>B. {b.innerText}</label><br/></div>
+               <div className="multiple-choice"> <Link to='/components/YesNo'><input onClick={this.handleClick} type="radio" name="answerSelected" value="a"/></Link><label>C. {a.innerText}</label><br/></div>
+               <div className="multiple-choice"> <Link to='/components/YesNo'><input onClick={this.handleClick} type="radio" name="answerSelected" value="c"/></Link><label>D. {c.innerText}</label><br/></div></form>;
                 break;
             case 6:
                 answers= <form>
-                <input onClick={this.handleClick} type="radio" name="answerSelected" value="d"/><label>A. {d}</label><br/>
-                <input onClick={this.handleClick} type="radio" name="answerSelected" value="c"/><label>B. {c}</label><br/>
-                <input onClick={this.handleClick} type="radio" name="answerSelected" value="b"/><label>C. {b}</label><br/>
-                <input onClick={this.handleClick} type="radio" name="answerSelected" value="a"/><label>D. {a}</label><br/></form>;
+               <div className="multiple-choice"> <Link to='/components/YesNo'><input onClick={this.handleClick} type="radio" name="answerSelected" value="d"/></Link><label>A. {d.innerText}</label><br/></div>
+               <div className="multiple-choice"> <Link to='/components/YesNo'><input onClick={this.handleClick} type="radio" name="answerSelected" value="c"/></Link><label>B. {c.innerText}</label><br/></div>
+               <div className="multiple-choice"> <Link to='/components/YesNo'><input onClick={this.handleClick} type="radio" name="answerSelected" value="b"/></Link><label>C. {b.innerText}</label><br/></div>
+               <div className="multiple-choice"> <Link to='/components/YesNo'><input onClick={this.handleClick} type="radio" name="answerSelected" value="a"/></Link><label>D. {a.innerText}</label><br/></div></form>;
                 break;
             case 7:
                 answers= <form>
-                <input onClick={this.handleClick} type="radio" name="answerSelected" value="c"/><label>A. {c}</label><br/>
-                <input onClick={this.handleClick} type="radio" name="answerSelected" value="a"/><label>B. {a}</label><br/>
-                <input onClick={this.handleClick} type="radio" name="answerSelected" value="b"/><label>C. {b}</label><br/>
-                <input onClick={this.handleClick} type="radio" name="answerSelected" value="d"/><label>D. {d}</label><br/>
+               <div className="multiple-choice"> <Link to='/components/YesNo'><input onClick={this.handleClick} type="radio" name="answerSelected" value="c"/></Link><label>A. {c.innerText}</label><br/></div>
+               <div className="multiple-choice"> <Link to='/components/YesNo'><input onClick={this.handleClick} type="radio" name="answerSelected" value="a"/></Link><label>B. {a.innerText}</label><br/></div>
+               <div className="multiple-choice"> <Link to='/components/YesNo'><input onClick={this.handleClick} type="radio" name="answerSelected" value="b"/></Link><label>C. {b.innerText}</label><br/></div>
+               <div className="multiple-choice"> <Link to='/components/YesNo'><input onClick={this.handleClick} type="radio" name="answerSelected" value="d"/></Link><label>D. {d.innerText}</label><br/></div>
                 </form>;
                 break;
             case 8:
                 answers= <form>
-                <input onClick={this.handleClick} type="radio" name="answerSelected" value="true"/><label>True</label><br/>
-                <input onClick={this.handleClick} type="radio" name="answerSelected" value="false"/><label>False</label><br/>
+               <div className="multiple-choice"> <Link to='/components/YesNo'><input onClick={this.handleClick} type="radio" name="answerSelected" value="True"/></Link><label>True</label><br/></div>
+               <div className="multiple-choice"> <Link to='/components/YesNo'><input onClick={this.handleClick} type="radio" name="answerSelected" value="False"/></Link><label>False</label><br/></div>
                 </form>;
                 break;
             default: answers=("Error");break;
@@ -129,11 +131,13 @@ class Game extends Component {
     render() {
         console.log("render Game")
         return (
-            <div>
+            <div className="Game" style={{backgroundImage: `url(${questionMark})`, backgroundSize: 'cover', height: '810px', width: '100%'}}>
+                
                 {
                     this.showQuestion()
     
                 } 
+                
             </div>
         );
     }
