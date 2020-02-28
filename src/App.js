@@ -21,7 +21,8 @@ class App extends Component {
     correctAnswer: "",
     countQ: 0,
     questions:[],
-    score: 0
+    score: 0,
+    // song:""
   }
 
   passLink=()=> {
@@ -130,14 +131,32 @@ class App extends Component {
       score: points
     })
   }
+  // playSound=(sound)=>{
+  //   console.log('play music',sound)
+  //   let music
+  //   if (sound === "TG"){
+  //     music = new Audio()
+      
+  //   }else if (sound==="JK"){
+  //     music = new Audio("funny1.mp3")
+
+  //   }else if (sound==="QS"){
+  //     music = new Audio("BeautifulMusic.mp3")
+      
+  //   }
+  //   this.setState({
+  //   song:music
+  //   })
+    
+
   render(){
     console.log("App")
 
   return (
     <div className="App">
       <Switch>
-        <Route exact path='/' render={(props)=><MainMenu {...props}/>}></Route>
-        <Route exact path='/Jokes' render={(props)=><Jokes {...props}/>}></Route>
+        <Route exact path='/' render={(props)=><MainMenu {...props} theSound={this.playSound}/>}></Route>
+        <Route exact path='/Jokes' render={(props)=><Jokes {...props} />}></Route>
       <Route exact path='/Quotes' render={(props)=><Quotes {...props}/>}></Route>
         <Route exact path="/TriviaGame" render={(props)=>
           <TriviaGame 
@@ -146,6 +165,7 @@ class App extends Component {
           theDifficulty={this.state.difficulty}
           passTheLink={this.passLink()}
           theQuestions={this.getQuestions}
+          
           />
           }>
         </Route>

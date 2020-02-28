@@ -8,14 +8,15 @@ import QMeme from './QMeme';
 class Quotes extends Component {
     state={
         quote:{},
-        ready: false,
+        ready: false
     }
     componentDidMount(){
         Axios.get(`https://favqs.com/api/quotes/${this.randomQuote()}`,{headers: {Authorization: 'Token token="98bcbd31c95e442861903a9f53c96236"', ContentType: 'application/json'}}).then(res=>{
         console.log('compdidmount',res.data)   
         this.setState({
                 quote: res.data,
-                ready:true
+                ready:true,
+                
             })
         })
         
@@ -32,7 +33,8 @@ class Quotes extends Component {
         
     }
     handleClick=()=>{
-        this.componentDidMount()
+        this.componentDidMount();
+        this.getTag()
         // window.location.reload()
     }
     randomQuote=()=>{
@@ -40,15 +42,17 @@ class Quotes extends Component {
         return x
     }
     getTag=()=>{
-        let tag = ""
+        let tagword = ""
         if (this.state.ready){
-            tag=this.state.quote.tags[Math.floor(Math.random()*this.state.quote.tags.length)]
+            tagword=this.state.quote.tags[Math.floor(Math.random()*this.state.quote.tags.length)]
         } else {
-            tag="inspirational"
+            tagword="inspirational"
         }
-        console.log('tag', tag)
-        console.log('quote',this.state.quote)
-        return tag
+        console.log('tag in get tag', tagword)
+        console.log('quote in get tag',this.state.quote)
+        this.setState({
+            tag: tagword
+        }) 
     }
 
     
@@ -63,7 +67,7 @@ class Quotes extends Component {
                 <h3><i>- {this.state.quote.author}</i></h3>
                 </div>
                 
-                <QMeme propTag={this.getTag()} quote={this.state.quote}/>
+                <QMeme propTag={this.state.tag} quote={this.state.quote}/>
                 {/* <img src={`https://media.giphy.com/media/${this.randomMeme()}/giphy.gif`} alt="Meme Error" /> */}
                 {/* <h2>{this.showPunchline()}</h2> */}
                 

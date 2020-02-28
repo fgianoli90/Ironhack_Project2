@@ -45,7 +45,9 @@ class Jokes extends Component {
     
     handleClick=()=>{
         this.componentDidMount()
-        // window.location.reload()
+        let funnies=["funny1.mp3","funny2.mp3","funny3.mp3","funny4.mp3"]
+        let sound= new Audio(funnies[Math.floor(Math.random()*funnies.length)])
+        sound.play()
     }
 
     showJoke=()=>{
@@ -122,7 +124,7 @@ class Jokes extends Component {
         console.log(punchline)
         return punchline
     }
-
+   
     render() {
         let memeURL=""
         if(this.state.ready){
@@ -131,6 +133,7 @@ class Jokes extends Component {
         }
         return (
             <div >
+
             {this.state.ready ?
               <div className="Jokes" style={{backgroundImage: `url(${jokebg})`, backgroundSize: 'cover', height: '800px', width: '100%'}}>
                 <h1>{this.showJoke()}</h1>

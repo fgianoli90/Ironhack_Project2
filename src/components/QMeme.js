@@ -9,9 +9,8 @@ class QMeme extends Component {
         ready:false
     }
     componentDidMount(){
-
+        console.log("Q MEME COMPDIDI MPINT")
         Axios.get(`https://api.giphy.com/v1/gifs/search?api_key=OgrRSkOHO9ZflUwt9XsExnGlZOxkLqOs&q=${this.props.propTag}&limit=10&offset=0&rating=PG-13&lang=en`).then(res=>{
-          console.log("images",res.data.data)    
             this.setState({
                 memes: res.data.data,
                 ready: true
@@ -26,20 +25,21 @@ class QMeme extends Component {
         return meme
     }
     render() {
+        console.log("render Q MEME",this.props.propTag)
         let memeURL=''
         if(this.state.ready){
-        let memeID=this.randomMeme()
-        console.log('inside url meme', memeID)
-        memeURL=`https://media.giphy.com/media/${memeID}/giphy.gif`
+            let memeID=this.randomMeme()
+            console.log('inside url meme', memeID)
+            memeURL=`https://media.giphy.com/media/${memeID}/giphy.gif`
         }
-        console.log(this.props.quote)
+        
 
         return (
             <div className="QMeme">
             {this.state.ready?
                  (<img src={memeURL} alt="Meme Error" />)
                  :
-                 ("Loading...")
+                 this.componentDidMount()
                 }
             <div className="sharelinks">
                 <FacebookShareButton url={memeURL} quote={this.props.quote.body} hashtag="#Mindscapes"><FacebookIcon round={true} size={35}/></FacebookShareButton>
