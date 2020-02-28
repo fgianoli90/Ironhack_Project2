@@ -3,9 +3,10 @@ import triviaSign from './triviaSign.gif';
 import {Link} from 'react-router-dom';
 import axios from 'axios'
 
-class Home extends Component {
+class TriviaGame extends Component {
     state={
-        questions:[]
+        questions:[],
+        ready: false
     }
 
     componentDidMount(){
@@ -13,7 +14,7 @@ class Home extends Component {
         console.log(res.data)
         this.setState ({
             questions: res.data.results,
-            // ready: true
+            ready: true
         })
       })
     }
@@ -24,8 +25,8 @@ class Home extends Component {
     render() {
         console.log("Home")
         return (
-            <div className="Home" style={{backgroundImage: `url(${triviaSign})`, backgroundSize: 'cover', height: '750px', width: '100%'}}>
-                {/* <img src={triviaSign} className="trivia-Sign" alt="trivia"/> */}
+            <div className="TriviaGame" style={{backgroundImage: `url(${triviaSign})`, backgroundSize: 'cover', height: '750px', width: '100%'}}>
+                {this.state.ready ?
                 <div className="ButtonsHome">
                     <Link to="/components/Categories">
                         <button>{this.props.theCategory === "a" ? ("Category"): this.props.theCategory}</button>
@@ -34,13 +35,16 @@ class Home extends Component {
                     <Link to="/components/Difficulty">
                         <button>{this.props.theDifficulty === "a" ? ("Difficulty Level"): this.props.theDifficulty}</button>
                     </Link>
-                </div><br/>
-                <div className="start-button" style={{color:'white'}}>
-                    {!(this.props.theCategory==="a") && !(this.props.theDifficulty==="a") ? <Link to="/components/Game"><button onClick={this.handleStart}>Start</button></Link>: ("Please select a Category and Difficulty Level")}
+                </div>
+                :
+                ("Loading...")
+                }
+                <div style={{color:'white'}}>
+                    {!(this.props.theCategory==="a") && !(this.props.theDifficulty==="a") ? <div className="start-button"><Link to="/components/Game"><button onClick={this.handleStart}>Start</button></Link></div>: <div className="Quit"><p>Please select a Category and Difficulty Level</p><Link to="/"><button >Quit</button></Link></div>}
                 </div>
             </div>
         );
     }
 }
 
-export default Home;
+export default TriviaGame;

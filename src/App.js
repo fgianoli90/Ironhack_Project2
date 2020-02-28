@@ -2,11 +2,14 @@ import React, {Component} from 'react';
 // import brain from './brain.gif';
 import './App.css';
 import { Route, Switch } from 'react-router-dom';
-import Home from './Home';
+import TriviaGame from './TriviaGame';
 import Categories from './components/Categories';
 import Difficulty from './components/Difficulty';
 import Game from './components/Game';
 import YesNo from './components/YesNo';
+import Jokes from './components/Jokes';
+import Quotes from './components/Quotes';
+import MainMenu from './MainMenu'
 
 
 
@@ -120,11 +123,9 @@ class App extends Component {
       questions: questionsPassed
     })
   }
-  locationReload=()=>{
-    Location.reload()
-  }
+  
   scoreTotal=(points)=>{
-    console.log("sunm of score", points)
+    console.log("sum of score", points)
     this.setState({
       score: points
     })
@@ -135,8 +136,11 @@ class App extends Component {
   return (
     <div className="App">
       <Switch>
-        <Route exact path="/" render={(props)=>
-          <Home 
+        <Route exact path='/' render={(props)=><MainMenu {...props}/>}></Route>
+        <Route exact path='/Jokes' render={(props)=><Jokes {...props}/>}></Route>
+      <Route exact path='/Quotes' render={(props)=><Quotes {...props}/>}></Route>
+        <Route exact path="/TriviaGame" render={(props)=>
+          <TriviaGame 
           {...props} 
           theCategory={this.state.category} 
           theDifficulty={this.state.difficulty}

@@ -23,22 +23,25 @@ class Game extends Component {
     }
 
     showQuestion=()=>{
+        console.log(this.props.questionProp)
         if (this.props.counter<=9){
             var el =document.createElement('span');
             el.innerHTML=this.props.questionProp.question
         return <div className="card" border="primary" style={{ width: '400px' }}>
-        <div className="card-header">Question {this.props.counter+1} of 10</div>
-        <div className="card-body">
-        <h3 className="card-title">{el.innerText}</h3>
-        <div className="card-text"><ul className="list-group-items">{this.randomizeAnswers()}</ul></div>
-        </div>
-        </div>
+                    <div className="card-header">Question {this.props.counter+1} of 10</div>
+                    <div className="card-body">
+                        <h3 className="card-title">{el.innerText}</h3>
+                        <div className="card-text">
+                            <ul className="list-group-items">{this.randomizeAnswers()}</ul>
+                        </div>
+                    </div>
+                </div>
         } else {
         return <div className="GameOver">
-        <h1>GameOver</h1><br/>
-        <p>Your final score: {this.props.scoreCount} / 10</p><br/>
-        <button onClick={this.goBackToFirstPage}>Play Again</button>
-        </div>
+                    <h1>GameOver</h1><br/>
+                    <p>Your final score: {this.props.scoreCount} / 10</p><br/>
+                    <button onClick={this.goBackToFirstPage}>Main Menu</button>
+                </div>
         }
     }
 
@@ -131,7 +134,7 @@ class Game extends Component {
     render() {
         console.log("render Game")
         return (
-            <div className="Game" style={{backgroundImage: `url(${questionMark})`, backgroundSize: 'cover', height: '810px', width: '100%'}}>
+            <div className="Game" style={{backgroundImage: `url(${questionMark})`, backgroundSize: 'cover', height: '810px',width: '100%'}}>
                 
                 {
                     this.showQuestion()
