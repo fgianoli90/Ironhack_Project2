@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import triviaSign from './triviaSign.gif';
+import MainMenuBG from './MainMenuBG.gif';
 import {Link} from 'react-router-dom';
 import axios from 'axios'
 
@@ -25,7 +25,7 @@ class TriviaGame extends Component {
     render() {
         console.log("Home")
         return (
-            <div className="TriviaGame" style={{backgroundImage: `url(${triviaSign})`, backgroundSize: 'cover', height: '750px', width: '100%'}}>
+            <div className="TriviaGame" style={{backgroundImage: `url(${MainMenuBG})`, backgroundSize: 'cover', height: '750px', width: '100%'}}>
                 {this.state.ready ?
                 <div className="ButtonsHome">
                     <Link to="/components/Categories">
@@ -39,8 +39,9 @@ class TriviaGame extends Component {
                 :
                 ("Loading...")
                 }
+                {/* <h1>Let's Play Trivia!</h1> */}
                 <div style={{color:'white'}}>
-                    {!(this.props.theCategory==="a") && !(this.props.theDifficulty==="a") ? <div className="start-button"><Link to="/components/Game"><button onClick={this.handleStart}>Start</button></Link></div>: <div className="Quit"><p>Please select a Category and Difficulty Level</p><Link to="/"><button >Quit</button></Link></div>}
+                    {!(this.props.theCategory==="a") && !(this.props.theDifficulty==="a") ? <div className="start-button"> <h1>Let's Play Trivia!</h1><Link to="/components/Game"><button onClick={this.handleStart}>Start</button></Link></div>: <div className="Quit"><p style={{marginBottom:'0'}}>Please select a Category and Difficulty Level</p><h1 style={{marginTop:'10px'}}>Let's Play Trivia!</h1><Link to="/"><button >Quit</button></Link></div>}
                 </div>
             </div>
         );

@@ -135,7 +135,7 @@ class Jokes extends Component {
             <div >
 
             {this.state.ready ?
-              <div className="Jokes" style={{backgroundImage: `url(${jokebg})`, backgroundSize: 'cover', height: '800px', width: '100%'}}>
+              <div className="Jokes" style={{backgroundImage: `url(${jokebg})`, backgroundSize: 'cover', height: '800px', width: 'fit-content'}}>
                 <h1>{this.showJoke()}</h1>
                 
                 <img src={memeURL} alt="Funny Error" />

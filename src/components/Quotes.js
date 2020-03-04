@@ -8,11 +8,12 @@ import QMeme from './QMeme';
 class Quotes extends Component {
     state={
         quote:{},
-        ready: false
+        ready: false,
+        tag: ""
     }
     componentDidMount(){
         Axios.get(`https://favqs.com/api/quotes/${this.randomQuote()}`,{headers: {Authorization: 'Token token="98bcbd31c95e442861903a9f53c96236"', ContentType: 'application/json'}}).then(res=>{
-        console.log('compdidmount',res.data)   
+        console.log('compdidmount quote',res.data)   
         this.setState({
                 quote: res.data,
                 ready:true,
@@ -50,9 +51,8 @@ class Quotes extends Component {
         }
         console.log('tag in get tag', tagword)
         console.log('quote in get tag',this.state.quote)
-        this.setState({
-            tag: tagword
-        }) 
+        return <QMeme propTag={tagword} quote={this.state.quote}/>
+         
     }
 
     
@@ -66,11 +66,7 @@ class Quotes extends Component {
                 <h1>{this.state.quote.body}</h1>
                 <h3><i>- {this.state.quote.author}</i></h3>
                 </div>
-                
-                <QMeme propTag={this.state.tag} quote={this.state.quote}/>
-                {/* <img src={`https://media.giphy.com/media/${this.randomMeme()}/giphy.gif`} alt="Meme Error" /> */}
-                {/* <h2>{this.showPunchline()}</h2> */}
-                
+                {this.getTag()}
                 <div className="quote-btns glow-button">
                     <button onClick={this.handleClick}>Another Quote</button>
                     <Link to="/"><button>Return to Main Menu</button></Link>

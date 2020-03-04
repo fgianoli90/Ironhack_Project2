@@ -6,40 +6,44 @@ import {FacebookIcon,FacebookShareButton,TwitterIcon, TwitterShareButton} from '
 class QMeme extends Component {
     state={
         memes:[],
-        ready:false
+        ready:false,
+        tag: ""
     }
     componentDidMount(){
         console.log("Q MEME COMPDIDI MPINT")
         Axios.get(`https://api.giphy.com/v1/gifs/search?api_key=OgrRSkOHO9ZflUwt9XsExnGlZOxkLqOs&q=${this.props.propTag}&limit=10&offset=0&rating=PG-13&lang=en`).then(res=>{
             this.setState({
                 memes: res.data.data,
-                ready: true
+                ready: true,
+                tag: this.props.propTag
             })
         })
     }
     randomMeme=()=>{
         let meme = ""
-        let memes= [...this.state.memes]
-        console.log('list of random memes',memes)
-        meme = memes[Math.floor(Math.random()*memes.length)].id
+        if (this.props.propTag===this.state.tag){
+            let memes= [...this.state.memes]
+            meme = memes[Math.floor(Math.random()*memes.length)].id 
+            
+        }else{
+            this.componentDidMount()
+        }
+        console.log('memeID',meme)
         return meme
     }
     render() {
-        console.log("render Q MEME",this.props.propTag)
+        console.log("propTag name",this.props.propTag,this.state.tag)
         let memeURL=''
-        if(this.state.ready){
-            let memeID=this.randomMeme()
-            console.log('inside url meme', memeID)
-            memeURL=`https://media.giphy.com/media/${memeID}/giphy.gif`
-        }
+        let memeID=this.randomMeme()
+        console.log('inside url meme', memeID)
+        memeURL=`https://media.giphy.com/media/${memeID}/giphy.gif`
         
-
         return (
             <div className="QMeme">
             {this.state.ready?
                  (<img src={memeURL} alt="Meme Error" />)
                  :
-                 this.componentDidMount()
+                 ("Loading...")
                 }
             <div className="sharelinks">
                 <FacebookShareButton url={memeURL} quote={this.props.quote.body} hashtag="#Mindscapes"><FacebookIcon round={true} size={35}/></FacebookShareButton>

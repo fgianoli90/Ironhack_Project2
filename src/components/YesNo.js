@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 import {Link} from 'react-router-dom';
-import AnswerImage from '../AnswerImage.jpg'
+import MainMenuBG from '../MainMenuBG.gif'
 
 class YesNo extends Component {
     state={
@@ -23,11 +23,13 @@ class YesNo extends Component {
         this.props.countTheQuestion(this.state.count)
     }
     checkResponse=()=>{
+        var el =document.createElement('span');
+        el.innerHTML=this.props.theCorrectAnswer
         if(this.state.responseGIF.answer===this.props.theAnswer){
-            return <div className="card" style={{ width: '22rem',backgroundColor:'white', padding:'20px 0' }}>
+            return <div className="card" style={{ width: 'fit-content',backgroundColor:'none', padding:'20px' }}>
             <h1 className="card-header">{this.props.theAnswer.toUpperCase()}</h1>
             <img className="card-img" variant="top" src={this.state.responseGIF.image} alt="loading error"/>
-            <p className="card-title">The correct answer is: <br/><b>{this.props.theCorrectAnswer}</b></p>
+            <p className="card-title">The correct answer is: <br/><b>{el.innerText}</b></p>
             <div className="card-link"><Link to="/components/Game"><button className="next-btn" onClick={this.handleClick}>Next</button></Link></div>
             </div>
         } else {
@@ -37,7 +39,7 @@ class YesNo extends Component {
     render() {
         console.log("inyesno",this.state.responseGIF)
         return (
-            <div className="YesNo" style={{backgroundImage: `url(${AnswerImage})`, backgroundSize: 'cover', height: '810px', width: '100%'}}>
+            <div className="YesNo" style={{backgroundImage: `url(${MainMenuBG})`, backgroundSize: 'cover', height: '810px', width: '100%'}}>
             {this.state.ready?
                 this.checkResponse()
                 :
