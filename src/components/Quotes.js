@@ -3,6 +3,8 @@ import Axios from 'axios';
 import {Link} from 'react-router-dom';
 import quotesImage from '../quotesImage.jpg';
 import QMeme from './QMeme';
+import {Container,Card} from 'react-bootstrap';
+
 
 
 class Quotes extends Component {
@@ -33,9 +35,15 @@ class Quotes extends Component {
        
         
     }
+    handleClickEnd=(music)=>{
+        music.pause();
+        music.currentTime=0
+        console.log('stopmusic', music,music.currentTime);
+    }
     handleClick=()=>{
         this.componentDidMount();
         this.getTag()
+        
         // window.location.reload()
     }
     randomQuote=()=>{
@@ -52,33 +60,36 @@ class Quotes extends Component {
         console.log('tag in get tag', tagword)
         console.log('quote in get tag',this.state.quote)
         return <QMeme propTag={tagword} quote={this.state.quote}/>
-         
     }
 
     
     render() { 
+        let music=this.props.theSound
+        music.play()
         return (
-            <div>
+            <Container className="Quotes" style={{backgroundImage: `url(${quotesImage})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat'}}>
             
             {this.state.ready ?
-              <div className="Quotes" style={{backgroundImage: `url(${quotesImage})`, backgroundSize: 'cover', height: '800px', width: '100%'}}>
-                <div className="headers">
+              
+            <Card border="primary">
+                <Card.Body className="card-text">
                 <h1>{this.state.quote.body}</h1>
-                <h3><i>- {this.state.quote.author}</i></h3>
-                </div>
-                {this.getTag()}
-                <div className="quote-btns glow-button">
-                    <button onClick={this.handleClick}>Another Quote</button>
-                    <Link to="/"><button>Return to Main Menu</button></Link>
-                </div>
+                <h3 className='card-title'><i>- {this.state.quote.author}</i></h3>
+                </Card.Body>
                 
-            </div>
+                {this.getTag()}
+                <Card.Link className="quote-btns glow-button">
+                    <div><Link to="/"><button onClick={()=>this.handleClickEnd(music)}>Return to Main Menu</button></Link></div>
+                    <div><button onClick={this.handleClick}>Another Quote</button></div>
+                </Card.Link>
+                
+            </Card>
             :
             ("Loading")
             }
             
                 
-            </div>
+            </Container>
         );
     }
 }

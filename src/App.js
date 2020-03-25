@@ -22,7 +22,7 @@ class App extends Component {
     countQ: 0,
     questions:[],
     score: 0,
-    // song:""
+    song: new Audio()
   }
 
   passLink=()=> {
@@ -65,11 +65,11 @@ class App extends Component {
     case   "Music": 
       theLink= `&category=12&difficulty=${this.state.difficulty.toLowerCase()}`;
       break;
-    case  "Celebrities" : 
-      theLink= `&category=26&difficulty=${this.state.difficulty.toLowerCase()}`;
+    case  "Mathematics" : 
+      theLink= `&category=19&difficulty=${this.state.difficulty.toLowerCase()}`;
       break;
-    case   "Art": 
-      theLink= `&category=25&difficulty=${this.state.difficulty.toLowerCase()}`;
+    case   "Television": 
+      theLink= `&category=14&difficulty=${this.state.difficulty.toLowerCase()}`;
       break;
     case  "Science & Nature": 
       theLink= `&category=17&difficulty=${this.state.difficulty.toLowerCase()}`;
@@ -131,6 +131,13 @@ class App extends Component {
       score: points
     })
   }
+
+  sound=(s)=>{
+    this.setState({
+      song: s
+    })
+  }
+
   // playSound=(sound)=>{
   //   console.log('play music',sound)
   //   let music
@@ -155,9 +162,9 @@ class App extends Component {
   return (
     <div className="App">
       <Switch>
-        <Route exact path='/' render={(props)=><MainMenu {...props} theSound={this.playSound}/>}></Route>
-        <Route exact path='/Jokes' render={(props)=><Jokes {...props} />}></Route>
-      <Route exact path='/Quotes' render={(props)=><Quotes {...props}/>}></Route>
+        <Route exact path='/' render={(props)=><MainMenu {...props} theSound={this.sound}/>}></Route>
+        <Route exact path='/Jokes' render={(props)=><Jokes {...props} theSound={this.state.song}/>}></Route>
+      <Route exact path='/Quotes' render={(props)=><Quotes {...props} theSound={this.state.song}/>}></Route>
         <Route exact path="/TriviaGame" render={(props)=>
           <TriviaGame 
           {...props} 

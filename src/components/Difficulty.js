@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import  {Link } from 'react-router-dom';
+import {Container,Row} from 'react-bootstrap';
+
 
 class Difficulty extends Component {
     handleClick=(e)=>{
@@ -12,14 +14,14 @@ class Difficulty extends Component {
     render() {
         console.log("Difficulty")
         return (
-            <div className="categories">
+            <Container className="diff">
             <header><h1>Select a Difficulty Level</h1></header>
-            <div className="categories-buttons">                    
+            <Row className="diff-buttons">                    
                     <Link to="/TriviaGame"><input type="button" onClick={this.handleClick} value="Easy" /></Link>
                     <Link to="/TriviaGame"><input type="button" onClick={this.handleClick} value="Medium" /></Link>
                     <Link to="/TriviaGame"><input type="button" onClick={this.handleClick} value="Hard" /></Link>
-            </div>
-            </div>
+            </Row>
+            </Container>
         );
     }
 }

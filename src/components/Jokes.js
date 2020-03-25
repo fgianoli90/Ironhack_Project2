@@ -3,6 +3,7 @@ import Axios from 'axios';
 import {Link} from 'react-router-dom';
 import jokebg from '../jokebg.jpg';
 import {FacebookIcon,FacebookShareButton,TwitterIcon, TwitterShareButton} from 'react-share';
+import { Container, Card } from 'react-bootstrap';
 
 
 class Jokes extends Component {
@@ -132,27 +133,27 @@ class Jokes extends Component {
             memeURL=`https://media.giphy.com/media/${memeID}/giphy.gif`
         }
         return (
-            <div >
+            <Container className="Jokes" style={{backgroundImage: `url(${jokebg})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat'}}  >
 
             {this.state.ready ?
-              <div className="Jokes" style={{backgroundImage: `url(${jokebg})`, backgroundSize: 'cover', height: '800px', width: 'fit-content'}}>
-                <h1>{this.showJoke()}</h1>
+              <Card>
+                <Card.Header>{this.showJoke()}</Card.Header>
                 
-                <img src={memeURL} alt="Funny Error" />
-                <h2>{this.showPunchline()}</h2>
+                <Card.Img className='img-fluid' src={memeURL} alt="Funny Error" />
+                <h2 className='card-title'>{this.showPunchline()}</h2>
                 <div className="sharelinks">
-                <FacebookShareButton url={memeURL} quote={this.state.joke} hashtag="#Mindscapes"><FacebookIcon round={true} size={35}/></FacebookShareButton>
-                <TwitterShareButton url={memeURL} title={this.state.joke} hashtag="#Mindscapes"><TwitterIcon round={true} size={35}/></TwitterShareButton>
+                <FacebookShareButton url={memeURL} quote={this.state.joke} hashtag="#Mindscapes"><FacebookIcon round={true} size={50}/></FacebookShareButton>
+                <TwitterShareButton url={memeURL} title={this.state.joke} hashtag="#Mindscapes"><TwitterIcon round={true} size={50}/></TwitterShareButton>
                 </div>
-                <div className="joke-btns glow-button">
-                    <button onClick={this.handleClick}>Another Joke</button>
-                    <Link to="/"><button>Return to Main Menu</button></Link>
-                </div>
-            </div>
+                <Card.Link className="joke-btns glow-button">
+                    <div><Link to="/"><button>Return to Main Menu</button></Link></div>
+                    <div><button onClick={this.handleClick}>Another Joke</button></div>
+                </Card.Link>
+            </Card>
             :
             ("Loading")
             }
-            </div>
+            </Container>
         );
     }
 }

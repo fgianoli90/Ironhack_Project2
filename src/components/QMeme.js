@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 import {FacebookIcon,FacebookShareButton,TwitterIcon, TwitterShareButton} from 'react-share'
+import { Card } from 'react-bootstrap';
 
 
 class QMeme extends Component {
@@ -41,13 +42,13 @@ class QMeme extends Component {
         return (
             <div className="QMeme">
             {this.state.ready?
-                 (<img src={memeURL} alt="Meme Error" />)
+                 (<Card.Img className='img-fluid' src={memeURL} alt="Meme Error" />)
                  :
                  ("Loading...")
                 }
             <div className="sharelinks">
-                <FacebookShareButton url={memeURL} quote={this.props.quote.body} hashtag="#Mindscapes"><FacebookIcon round={true} size={35}/></FacebookShareButton>
-                <TwitterShareButton url={memeURL} title={this.props.quote.body} hashtag="#Mindscapes"><TwitterIcon round={true} size={35}/></TwitterShareButton>
+                <FacebookShareButton url={memeURL} quote={this.props.quote.body} hashtag="#Mindscapes"><FacebookIcon round={true} size={50}/></FacebookShareButton>
+                <TwitterShareButton url={memeURL} title={this.props.quote.body} hashtag="#Mindscapes"><TwitterIcon round={true} size={50}/></TwitterShareButton>
             </div>
             </div>
         );

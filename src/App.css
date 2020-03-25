@@ -4,8 +4,6 @@
   display: flex; 
   justify-content: center;
   margin: 0 auto;
-  font-family: 'Concert One', cursive;
-  /* background-color: black; */
 }
 
 .App-logo {
@@ -43,53 +41,71 @@
   }
 }
 .TriviaGame {
-  display: flex;
+  /* display: flex;
   justify-content: space-around;
   align-items: center;
-  flex-direction: column;
+  flex-direction: column; */
   background-size: cover;
-  padding: 33px 0
-  
+  background-position: center;
+  background-repeat: no-repeat;
+  /* padding: 4% 0; */
+  font-family: 'Concert One', cursive;
+  width: 100vw;
+  height: 100vh;
 }
 .TriviaGame h1{
   background-color:white;
   width: 100%;
   color: rgb(187, 187, 247);
-  padding: 60px 10px;
-  font-size: 7rem;
-  text-shadow: #505050 8px 10px 10px; 
+  padding: 5% 0;
+  font-size: 7em;
+  text-shadow: #505050 8px 10px 10px;
+  font-family: 'Concert One', cursive; 
 }
 
 .ButtonsHome {
   display: flex;
-  padding:20px;
-  
-
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 90%;
 }
 
-.ButtonsHome button{
-  padding: 20px 50px;
+.ButtonsHome Button{
+  padding: 5%;
   background-color: rgb(187, 187, 247);
   color:  white;
   border-color:  white;
   border-radius: 15px;
-  margin: 0 50px;
-  width: 400px;
-  font-size: 30px;
+  margin: 5%;
+  min-width: fit-content;
+  width: 100%;
+  height: max-content;
+  font-size: 3em;
   font-family: 'Concert One', cursive;
 }
 .ButtonsHome a {
   text-decoration: none;
   font-family: 'Concert One', cursive;
+  width: fit-content;
 }
 
 .categories-buttons{
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  /* padding: 3% 0 */
+}
+.diff-buttons{
+  display: flex;
+  flex-wrap: wrap;
   justify-content: space-evenly;
-  padding: 10px 0
+  align-content: center;
+  /* padding: 3% 0 */
 }
 
-.column1{
+/* .column1{
  display: flex;
  align-items: center;
  justify-content: space-evenly;
@@ -107,59 +123,101 @@
  align-items: center;
  justify-content: space-evenly;
  flex-direction: column;
-}
+} */
 .categories-buttons input{
-  margin: 30px;
-  width: 250px;
-  height: 60px;
+  margin: 5% 0;
+  width: 80%;
+  height: 8vh;
   color: white;
   background-color: rgb(187, 187, 247);
   border: rgb(187, 187, 247);
   border-radius: 15px;
-  font-size: 20px;
+  font-size: 1.3em
+}
+.diff-buttons input{
+  margin: 5% 0;
+  width: 80%;
+  height: 8vh;
+  color: white;
+  background-color: rgb(187, 187, 247);
+  border: rgb(27, 27, 29);
+  border-radius: 15px;
+  font-size: 1.3em
 }
 
 .categories h1 {
-  font-size: 3em;
+  font-size: 5em;
   background-color: white;
   color: rgb(187, 187, 247);
-  font-stretch: 30px;
-  padding: 30px 0;
+  /* padding: 0; */
+  font-family: 'Concert One', cursive;
+}
+.diff h1 {
+  font-size: 5em;
+  background-color: white;
+  color: rgb(187, 187, 247);
+  /* padding: 0; */
+  font-family: 'Concert One', cursive;
 }
 .categories-buttons a {
   text-decoration: none;
   color: rgb(187, 187, 247);
+  font-family: 'Concert One', cursive;
 }
 
-.Game {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-direction: column;
-  /* padding: 100px 20px; */
-  border: auto;
-  /* font-size: 20px; */
-  text-align: left;
-  color: white;
-  font-weight: 300;
-  /* background-color: cornflowerblue ; */
-  /* margin: 170px auto; */
+.diff-buttons a {
+  text-decoration: none;
+  color: rgb(187, 187, 247);
+  font-family: 'Concert One', cursive;
+  width:75%
 }
 .YesNo{
   display: flex;
   justify-content: space-around;
   align-items: center;
   flex-direction: column;
-  font-size: 32px;
+  font-size: 2rem;
   color:white;
+  font-family: 'Concert One', cursive;
+  width: 100%;
+  min-height: 100vh;
+}
+.YesNo .card{
+  background-color:  rgb(154, 154, 247);
+}
+.YesNo header, p {
+  background-color:  rgb(154, 154, 247);
+  padding: 3%;
+  margin: 0 auto;
 }
 
 .YesNo img {
   width: 100%;
-  height: 400px;
+  height: 70%;
   margin-bottom: 0;
 }
-
+.next-btn{
+  background-color: rgb(229, 149, 223);
+  border-color: white;
+  color: white;
+  border-radius: 20px;
+  width: 90%;
+  height: 10%;
+  font-size: 2rem;
+  margin-bottom: 5%
+}
+.Game { 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  text-align: left;
+  color: white;
+  font-family: 'Concert One', cursive;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 .Game button {
   border-radius: 15px ;
   background-color: rgb(177, 97, 231);
@@ -170,59 +228,82 @@
   font-size: 20px;
   font-weight: bolder;
 }
-.Game form {
+
+.list-group-items{
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-evenly;
   align-items: flex-start;
   flex-direction: column;
-  padding: 10px 0;
+  padding: 3% 0;
+}
+.Game .card{
+  /* display: flex; */
+  /* justify-content: space-around; */
+  /* align-items: center; */
+  /* flex-direction: column; */
+  background-color: rgb(154, 154, 247);
+  padding: 2% ;
+  font-size: 1.5rem;
+  width: 90%;
+  /* margin: 5% */
+  /* font-weight: lighter; */
+}
+.Game .card-header{
+  /* border-bottom: 3px solid rgb(229, 149, 223); */
+  background-color: rgb(229, 149, 223);
+  padding: 3% 5%;
+}
+.Game form{
+  width: 100%;
 }
 .multiple-choice{
-  padding: 3px 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 100%;
+  
 }
-.multiple-choice label{
-    margin-left: 3px;
+.multiple-choice-label{
+    margin-left: 1%;
+    /* width: 100%;  */
+    
   }
-  .next-btn{
-    background-color: rgb(229, 149, 223);
-    border-color: white;
-    color: white;
-    border-radius: 20px;
-    width: 500px;
-    height: 50px;
-    font-size: 28px;
-    margin-top: 20px
-  }
-  .start-button button {
-    padding: 10px 30px;
+  
+  .start-button Button {
+    padding: 3% 2%;
     background-color: white;
     color:  rgb(154, 154, 247);
     border-color: white;
     border-radius: 15px;
-    margin-bottom: 100px;
-    width: 400px;
-    font-size: 50px;
+    margin: 5% 0;
+    width: fit-content;
+    font-size: 3rem;
     font-family: 'Concert One', cursive;
   }
   
 .GameOver {
-  
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   flex-direction: column;
   align-items: center;
+  font-family: 'Concert One', cursive;
+  width: 70%
 }
 .GameOver p{
-  font-size: 30px;
+  font-size: 2em;
   background-color:  rgb(85, 206, 243);
-  padding: 15px 20px;
+  margin: 5% 0;
+  width: fit-content;
   border-radius: 180px;
+  text-align: center;
 }
 
 .GameOver h1{
-  font-size: 160px;
+  font-size: 5em;
   text-shadow: #505050 8px 10px 10px; 
-  margin-bottom: 30px;
+  margin-bottom: 10%;
 }
 
 .GameOver button{
@@ -230,101 +311,149 @@
   border-color: rgb(56, 55, 55);
   color: rgb(54, 151, 207);
   border-radius: 20px;
-  width: 300px;
-  height: 50px;
-  font-size: 28px;
-  padding: 5px 10px;
-  margin-top: 20px;
+  width: 80%;
+  height: 5%;
+  font-size: 1.5em;
+  padding: 3% 5%;
+  /* margin-top: 20px; */
 }
 
 .Main-Menu {
-  display:flex;
-  flex-direction: column;
-  justify-content:center;
-  align-items:center;
-  height:800px;
+  /* display:flex; */
+  /* flex-direction: column; */
+  /* justify-content:space-around; */
+  /* align-items:center; */
+  min-height: 100vh;
+  /* height: 100%; */
   width:100%;
-  
+  /* padding: 30px; */
+  font-family: 'Concert One', cursive;
+  /* flex-wrap: wrap; */
   }
 
 .Main-Menu h1 {
-  margin: 0 auto;
+  margin: 0.5em auto;
   color:  rgb(239, 174, 252);
-  font-size: 40px;
+  /* font-size: 60px; */
   font-variant-caps: petite-caps; 
 }
 .Main-Menu h1:nth-child(1){
   text-shadow: #505050 8px 10px 10px;
-  font-size: 120px;
+  font-size: 5rem;
 }
 
 .Main-Menu h3 {
-  margin: 0 auto;
-  /* font-family: Arial, Helvetica, sans-serif; */
+  margin: 2em auto;
   font-variant-caps: petite-caps; 
-  font-size: 2em;
+  font-size: 2rem;
   color:  rgb(154, 154, 247);
-  margin-bottom: 100px;
+  
 }
 
-.Main-Menu div {
+.list-group {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
-  align-items:flex-start;
+  align-items: center;
+  /* margin: 3em; */
+  width: 100%;
   }
-.Main-Menu a{
+.list-group a{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-decoration: none;
-  background-color: whitesmoke;
+  background-color: rgba(245, 245, 245, 0.144);
   border-radius: 180px;
-  width: 250px;
-  margin: auto 100px;
-  padding: 20px;
-  font-size: 0.4em;
+  /* width: 250px; */
+  /* margin: auto 6em; */
+  /* padding: 100px; */
+  font-size: 1em;
 }
-.Main-Menu a h1{
+.list-group img {
+  height: 30vh;  
+  width: 20vw;
+}
+.list-group a h1{
   color:  rgb(154, 154, 247);
 }
+
+.sharelinks {
+  margin: 3% 0;
+ }
 
   .Jokes {
+ 
+    min-height: 100vh;
+    width: 100%;
+    font-family: 'Concert One', cursive;
+    color: white;
+  }
+  .Jokes .card{
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: space-between;
-    padding-bottom: 10px;
+    min-height: 100vh;
+    width: 100%;
+    font-size: 3em;
+    padding: 5% 0;
+
   }
-  .Jokes h1 {
-    color: white;
-    font-size: 42px;
-    font-family: 'Concert One', cursive;
-    width: 80%;
-    margin-top: 50px
-  }
+
   .Jokes h2 {
     background-color: white;
     border-radius: 180px;
     color: crimson;
-    font-size: 30px;
+    font-size: 3rem;
     font-family: 'Concert One', cursive;
-    width: fit-content;
-    margin-top: 30px;
-    padding: 5px 20px;
+    /* width: fit-content; */
+    /* margin-top: 30px; */
+    padding: 1% 3%;
   }
-  .Jokes img {
-    height: 400px;
-    width: 70%;
+  .Jokes .card-img {
+    margin-top: 3%;
+    height: 50%;
+    width: 60%;
     border-radius: 180px;
   }
+
+  .Jokes .card-link {
+    width: 100%;
+    display: flex;
+   justify-content: center;
+  }
+  
+  .joke-btns div{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 2% 0;
+    width: 40%
+  }
+
   .joke-btns button{
-    margin: 0 50px 30px;
-    width: 200px;
-    height: 40px;
+    min-width: fit-content;
+    width: 30%;
+    height: 8vh;
+    /* margin: 0 5%; */
+    /* padding: 1% 30%; */
     background-color: darkred;
     color: white;
-    font-size: 16px;
+    font-size: 1.2rem;
     border-color: white;
     border-width: 1px;
     border-radius: 180px;
     transition: all 0.2s ease-in-out;
+  }
+
+  .joke-btns a {
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
   }
   
   .glow-button button {
@@ -335,43 +464,85 @@
   .Quotes {
     display: flex;
     align-items: center;
-    flex-direction: column;
-    justify-content: space-between;
-    padding-bottom: 10px;
+    justify-content: center;
+    width: 100%;
+    min-height: 100vh;
+    font-family: 'Merienda', cursive;
+
   }
-  .QMeme img {
-    height: 300px;
-    width: 250;
+  .QMeme{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: fit-content;
+    /* margin: 3% 0; */
+  }
+  
+  .Quotes .card {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 100%;
+    min-height: 100vh;
+    padding: 3%;
+  }
+  .QMeme .card-img {
+    height:100%;
+    width: 90%;
     border-radius: 45px;
     transition: all 0.2s ease-in-out;
+    margin: 2% 0;
   }
-  .headers {
+  .Quotes .card-text {
     color: white;
-    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
-    width: 70%;
-    margin-top: 50px;
+    font-family: 'Merienda', cursive;
+    width: 90%;
+    /* margin-top: 50px; */
     background-color: rgba(0, 0, 0, 0.185);
     border-radius: 15px;
-    padding: 0 20px;
+    padding: 0 2%;
+    font-weight: lighter;
+    font-size: 70%;
+  }
+  .Quotes .card-link {
+    width: 100%;
+    display: flex;
+   justify-content: center;
   }
   .quote-btns button{
-    margin: 0 50px 30px;
-    width: 200px;
-    height: 40px;
+    min-width: fit-content;
+    width: 30%;
+    height: 8vh;
     background-color: white;
     color: rgb(98, 139, 194);
     font-weight: bold;
-    font-size: 16px;
+    font-size: 1.2rem;
     border-color: white;
     border-width: 1px;
     border-radius: 180px;
     transition: all 0.2s ease-in-out;
   }
+  .quote-btns div{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 2% 0;
+    width: 50%
+  }
+  .quote-btns a {
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+  }
   .Quit p{
     background-color: rgb(187, 187, 247);
     width: 100%;
     font-size: 24px;
-    padding: 7px 10px;
+    padding: 7px 0;
 
   }
   .Quit button {
@@ -386,19 +557,14 @@
     font-family: 'Concert One', cursive;
 
   }
-.Game .card{
-  background-color: rgb(154, 154, 247);
-  padding: 40px;
-  font-size: larger;
-  font-weight: bold;
+
+
+.apply_viewport_height{
+  height:100vh;
 }
-.Game .card-header{
-  /* border-bottom: 3px solid rgb(229, 149, 223); */
-  background-color: rgb(229, 149, 223);
-  padding: 2px 5px;
+
+#root {
+  min-height: 100vh;
 }
-.YesNo .card h1, p {
-  background-color:  rgb(154, 154, 247);
-  padding: 10px 10px;
-  margin: 0 auto;
-}
+
+

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 import {Link} from 'react-router-dom';
-import MainMenuBG from '../MainMenuBG.gif'
+import MainMenuBG from '../MainMenuBG.gif';
+import {Card} from 'react-bootstrap'
 
 class YesNo extends Component {
     state={
@@ -26,12 +27,12 @@ class YesNo extends Component {
         var el =document.createElement('span');
         el.innerHTML=this.props.theCorrectAnswer
         if(this.state.responseGIF.answer===this.props.theAnswer){
-            return <div className="card" style={{ width: 'fit-content',backgroundColor:'none', padding:'20px' }}>
-            <h1 className="card-header">{this.props.theAnswer.toUpperCase()}</h1>
+            return <Card className="card">
+            <Card.Header>{this.props.theAnswer.toUpperCase()}</Card.Header>
             <img className="card-img" variant="top" src={this.state.responseGIF.image} alt="loading error"/>
-            <p className="card-title">The correct answer is: <br/><b>{el.innerText}</b></p>
-            <div className="card-link"><Link to="/components/Game"><button className="next-btn" onClick={this.handleClick}>Next</button></Link></div>
-            </div>
+            <Card.Text className="card-title">The correct answer is: <br/><b>{el.innerText}</b></Card.Text>
+            <Link to="/components/Game"><button className="next-btn" onClick={this.handleClick}>Next</button></Link>
+            </Card>
         } else {
             return this.componentDidMount()
         }
@@ -39,7 +40,7 @@ class YesNo extends Component {
     render() {
         console.log("inyesno",this.state.responseGIF)
         return (
-            <div className="YesNo" style={{backgroundImage: `url(${MainMenuBG})`, backgroundSize: 'cover', height: '810px', width: '100%'}}>
+            <div className="YesNo" style={{backgroundImage: `url(${MainMenuBG})`, backgroundSize: 'cover'}}>
             {this.state.ready?
                 this.checkResponse()
                 :

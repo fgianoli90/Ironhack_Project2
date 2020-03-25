@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import MainMenuBG from './MainMenuBG.gif';
 import {Link} from 'react-router-dom';
-import axios from 'axios'
+import axios from 'axios';
+import {Container,Row,Col,Button} from 'react-bootstrap'
 
 class TriviaGame extends Component {
     state={
@@ -25,25 +26,29 @@ class TriviaGame extends Component {
     render() {
         console.log("Home")
         return (
-            <div className="TriviaGame" style={{backgroundImage: `url(${MainMenuBG})`, backgroundSize: 'cover', height: '750px', width: '100%'}}>
+            <Container className="TriviaGame" style={{backgroundImage: `url(${MainMenuBG})`, backgroundSize: 'cover'}}>
                 {this.state.ready ?
-                <div className="ButtonsHome">
+                <Row className="ButtonsHome">
+                    <Col xs={6} md={4}>
                     <Link to="/components/Categories">
-                        <button>{this.props.theCategory === "a" ? ("Category"): this.props.theCategory}</button>
+                        <Button>{this.props.theCategory === "a" ? ("Category"): this.props.theCategory}</Button>
                     </Link>
-                    
+                    </Col>
+                    <Col xs={6} md={4}>
                     <Link to="/components/Difficulty">
-                        <button>{this.props.theDifficulty === "a" ? ("Difficulty Level"): this.props.theDifficulty}</button>
+                        <Button>{this.props.theDifficulty === "a" ? ("Difficulty Level"): this.props.theDifficulty}</Button>
                     </Link>
-                </div>
+                    </Col>
+                </Row>
                 :
                 ("Loading...")
                 }
-                {/* <h1>Let's Play Trivia!</h1> */}
-                <div style={{color:'white'}}>
-                    {!(this.props.theCategory==="a") && !(this.props.theDifficulty==="a") ? <div className="start-button"> <h1>Let's Play Trivia!</h1><Link to="/components/Game"><button onClick={this.handleStart}>Start</button></Link></div>: <div className="Quit"><p style={{marginBottom:'0'}}>Please select a Category and Difficulty Level</p><h1 style={{marginTop:'10px'}}>Let's Play Trivia!</h1><Link to="/"><button >Quit</button></Link></div>}
-                </div>
-            </div>
+                
+                <Row style={{color:'white'}}>
+                    {!(this.props.theCategory==="a") && !(this.props.theDifficulty==="a") ? <Col className="start-button"><Link to="/components/Game"><Button onClick={this.handleStart}>Start</Button></Link><h1>Let's Play Trivia!</h1></Col>: <Col className="Quit"><h1 style={{margin:'auto 0'}}>Let's Play Trivia!</h1><p style={{marginBottom:'3rem'}}>Please select a Category and Difficulty Level</p><Link to="/"><Button >Quit</Button></Link></Col>}
+                </Row>
+                
+            </Container>
         );
     }
 }
